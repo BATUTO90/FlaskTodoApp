@@ -1,146 +1,78 @@
-# Flask Project & Task Manager
+# 🎨 HyperReal Studio 916
 
-A simple Flask-based web application that allows users to manage projects and their associated tasks. Each project has its own set of tasks, and you can create, update, delete projects and tasks interactively.
+Generador de retratos hiperrealistas impulsado por agentes de IA y modelos de difusión de última generación de Hugging Face.
 
----
+## 🚀 Características
 
-## Features
+- **Agentes de IA:** Utiliza un sistema de agentes para refinar prompts y mejorar la calidad de la imagen (iluminación, textura, composición, etc.).
+- **Modelo de Alta Calidad:** Integrado con `stabilityai/stable-diffusion-xl-base-1.0` para resultados fotorrealistas superiores.
+- **Optimizado para GPU:** Detecta y utiliza automáticamente una GPU (CUDA) para una generación de imágenes mucho más rápida.
+- **Seguridad de API:** Gestiona el token de la API de Hugging Face de forma segura a través de variables de entorno.
+- **Interfaz Intuitiva:** Interfaz de usuario sencilla y potente creada con Gradio.
 
-- **Projects**
-  - Create new projects.
-  - View all projects on the homepage.
-  - Delete a project along with all associated tasks.
-  
-- **Tasks**
-  - Add tasks to specific projects.
-  - Mark tasks as complete or incomplete.
-  - Delete individual tasks.
+## ⚙️ Requisitos Previos
 
----
+- Python 3.8 o superior
+- `pip` (el gestor de paquetes de Python)
 
-## Tech Stack
+## 💻 Instalación y Uso Local
 
-- **Backend**: Flask (Python)
-- **Database**: SQLite (via SQLAlchemy ORM)
-- **Frontend**: HTML, CSS, Jinja2, Bootstrap for styling.
-
----
-
-## Prerequisites
-
-Ensure you have the following installed on your machine:
-
-- Python 3.7 or higher
-- pip (Python package manager)
-
----
-
-## Installation
-
-1. **Clone the Repository**
-
+1.  **Clona el repositorio:**
     ```bash
-    git clone https://github.com/your-username/project-task-manager.git
-    cd project-task-manager
+    git clone <URL_DEL_REPOSITORIO>
+    cd <NOMBRE_DEL_DIRECTORIO>
     ```
 
-2. **Create a Virtual Environment**
-
+2.  **Instala las dependencias:**
+    Crea un entorno virtual (recomendado) y activa la instalación de los paquetes.
     ```bash
-    python3 -m venv venv
-    source venv/bin/activate  # On Linux/Mac
-    venv\Scripts\activate     # On Windows
-    ```
-
-3. **Install Dependencies**
-
-    ```bash
+    python -m venv venv
+    source venv/bin/activate  # En Windows: venv\Scripts\activate
     pip install -r requirements.txt
     ```
 
----
+3.  **Configura tu Token de Hugging Face:**
+    Necesitas un token de API de Hugging Face para descargar el modelo.
+    -   Obtén tu token desde [Hugging Face Settings](https://huggingface.co/settings/tokens).
+    -   Establece el token como una variable de entorno.
 
-## Running the Application
+    En Linux/macOS:
+    ```bash
+    export HUGGING_FACE_TOKEN="tu_token_aqui"
+    ```
+    En Windows (Command Prompt):
+    ```bash
+    set HUGGING_FACE_TOKEN="tu_token_aqui"
+    ```
 
-1. **Start the Application**
-
-    Run the application in development mode:
-
+4.  **Ejecuta la aplicación:**
     ```bash
     python app.py
     ```
+    La aplicación se iniciará y podrás acceder a ella en tu navegador a través de la URL local que se mostrará en la terminal (normalmente `http://127.0.0.1:7860`).
 
-2. **Access the Application**
+## 🚀 Despliegue en Hugging Face Spaces
 
-    Open your browser and navigate to:
+Hugging Face Spaces es una excelente opción para alojar y compartir esta aplicación de forma gratuita.
 
-    ```
-    http://127.0.0.1:5000/
-    ```
+1.  **Crea un nuevo Space:**
+    -   Ve a [Hugging Face Spaces](https://huggingface.co/new-space).
+    -   Dale un nombre a tu Space.
+    -   Selecciona **Gradio** como el SDK.
+    -   Elige el hardware que prefieras (puedes empezar con una CPU básica, pero se recomienda una GPU para un mejor rendimiento).
+    -   Haz clic en **Create Space**.
 
----
+2.  **Sube tus archivos:**
+    -   Sube los siguientes archivos a tu nuevo Space (puedes hacerlo a través de la interfaz web o usando `git`):
+        -   `app.py`
+        -   `requirements.txt`
 
-## Usage
+3.  **Configura tu Token como un Secret:**
+    Esta es la parte más importante para mantener tu token seguro.
+    -   En tu Space, ve a la pestaña **Settings**.
+    -   Busca la sección **Secrets** y haz clic en **New secret**.
+    -   En el campo **Name**, escribe `HUGGING_FACE_TOKEN`.
+    -   En el campo **Value**, pega tu token de Hugging Face.
+    -   Haz clic en **Save secret**.
 
-### Home Page
-
-The homepage lists all projects. 
-
-- Add a new project using the input form at the top of the page.
-- View tasks associated with a project using the "View Tasks" button.
-- Delete a project (and all tasks associated with it) using the "Delete Project" button.
-
-### Project Task Management
-
-Inside a specific project’s task page, you can:
-
-- Add tasks using the "Add Task" form.
-- Mark tasks as complete or incomplete.
-- Delete individual tasks.
-
-A **"Back to Projects"** button is available for easy navigation to the homepage.
-
-```bash
-pip install -r requirements.txt
-```
-
----
-
-## Design and Aesthetics
-
-- A **pastel gradient background** gives the application a soft and modern look.
-- **Responsive design** is ensured using Bootstrap’s grid system.
-- **Interactive user experience**, with hover effects and confirmation prompts for deleting tasks and projects.
-
----
-
-## Known Issues and Limitations
-
-- No authentication or user access control (all features are open to anyone who uses the app).
-- Currently, there’s no pagination for larger lists of projects or tasks.
-
----
-
-## Future Improvements
-
-- Add user authentication to make projects and tasks user-specific.
-- Implement advanced task features, such as deadlines or task priorities.
-- Improve database efficiency for handling large datasets.
-- Add API endpoints for integration with other systems.
-
----
-
-## Contribution
-
-Contributions are welcome! If you'd like to report a bug, suggest a feature, or submit improvements:
-
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature-name`).
-3. Commit your changes (`git commit -m "Add feature"`).
-4. Push to the branch (`git push origin feature-name`).
-5. Open a pull request.
-
----
-
-
-Happy coding!
+    La aplicación se reiniciará automáticamente y usará este *secret* como la variable de entorno `HUGGING_FACE_TOKEN`. ¡Tu aplicación ya está desplegada y lista para ser compartida!
